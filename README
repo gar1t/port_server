@@ -77,11 +77,11 @@ Benefits
 
 This pattern implements a very simple, light weight service oriented
 architecture (SOA) using just a few lines of Erlang. This is not just a
-theoretical example -- this same code/pattern has been running in production
-for over a year is proven to work very well at providing robust, fault tolerant
-applications in non-Erlang languages.
+theoretical example -- this same code/pattern, which has been running in
+production for over a year, is proven to work very well at providing robust,
+fault tolerant applications in non-Erlang languages.
 
 If an organization is considering Erlang for building fault tolerant
 applications, this scheme is a practical starting point. It employs the central
-Erlang princples of fault tolerance, but reuses existing application code and
-requires only increment change to a target environment.
+Erlang princples of fault tolerance, but does so with existing application code
+and requires only increment change to a target environment.
