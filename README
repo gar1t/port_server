@@ -22,8 +22,15 @@ The gist:
   more service oriented, and use a "fail fast and hard" pattern for error
   handling
 
-Running the Example
-===================
+Building
+========
+
+From the directory containing this README::
+
+ $ make
+
+Running
+=======
 
 The example can be run from the directory containing this README file::
 
