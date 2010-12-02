@@ -1,0 +1,2 @@
+#!/bin/sh
+erl -pa ebin -s example

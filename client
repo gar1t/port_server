@@ -1,0 +1,14 @@
+#!/usr/bin/python2
+
+import sys
+from xmlrpclib import ServerProxy
+
+if len(sys.argv) <> 3:
+    print "usage: client M N"
+    sys.exit(1)
+
+m = int(sys.argv[1])
+n = int(sys.argv[2])
+
+server_b = ServerProxy("http://localhost:8001")
+print server_b.crunch(m, n)

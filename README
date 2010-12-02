@@ -1,0 +1,75 @@
+===========
+port_server
+===========
+
+port_server is a simple set of example code that illustrates how an Erlang OTP
+application can be used to start, supervise and stop a set of related
+external applications.
+
+For background on this code, refer to doc/ceug-dec-2010.svg.
+
+The motivation for the presentation to the Chicago Erlang User Group was to
+provide a tangible benefit for using Erlang in non-Erlang environments.
+
+The gist:
+
+- Use Erlang ports to run external applications from a single Erlang node
+
+- Use OTP application supervisors to start, supervise, and shutdown the
+  applicable services
+
+- Refactor external applications written in other languages to be smaller,
+  more service oriented, and use a "fail fast and hard" pattern for error
+  handling
+
+Running the Example
+===================
+
+The example can be run from the directory containing this README file::
+
+ $ ./run
+
+This will start the "example" application, which starts two Python based
+services: service_a and service_b.
+
+To exit the Erlang process, type ^C ^C. This will shut down the Erlang process,
+which will in turn shut down the two services.
+
+From another console, test the services by running the following from the
+same directory::
+
+ $ ./client M N
+
+where M and N are two positive integers. These are passed via XML-RPC to
+service_b, which will "crunch" them into a single, utterly meaningless number.
+
+To simulate a crash, provide a negative number for either M or N.
+
+You can also manually kill either service_a or service_b:
+
+ $ pgrep service_a
+ $ pkill service_a
+ $ pgrep service_a
+
+You should see a different PID on the second call to pgrep.
+
+Note the Erlang console log for SASL messages when either service crashes.
+
+Refer to the presentation for background on why the example is designed the
+way it is.
+
+This pattern can be extended to other languages and communication protocols.
+
+Benefits
+========
+
+This pattern implements a very simple, light weight service oriented
+architecture (SOA) using just a few lines of Erlang. This is not just a
+theoretical example -- this same code/pattern has been running in production
+for over a year is proven to work very well at providing robust, fault tolerant
+applications in non-Erlang languages.
+
+If an organization is considering Erlang for building fault tolerant
+applications, this scheme is a practical starting point. It employs the central
+Erlang princples of fault tolerance, but reuses existing application code and
+requires only increment change to a target environment.

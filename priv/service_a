@@ -1,0 +1,44 @@
+#!/usr/bin/python2
+
+import time
+import sys
+import os
+import threading
+
+from SimpleXMLRPCServer import SimpleXMLRPCServer
+
+def start_port_listener(port):
+    def listen():
+        while True:
+            if not port.readline():
+                os._exit(0)
+            time.sleep(1)
+    threading.Thread(target=listen).start()
+
+def add(x,y):
+    return x+y
+
+def subtract(x, y):
+    return x-y
+
+def multiply(x, y):
+    return x*y
+
+def divide(x, y):
+    return x/y
+
+def run():
+    start_port_listener(sys.stdin)
+
+    # A simple server with simple arithmetic functions
+    server = SimpleXMLRPCServer(("localhost", 8000), logRequests=False)
+    print "Listening on port 8000..."
+    server.register_multicall_functions()
+    server.register_function(add, 'add')
+    server.register_function(subtract, 'subtract')
+    server.register_function(multiply, 'multiply')
+    server.register_function(divide, 'divide')
+    server.serve_forever()
+
+if __name__ == '__main__':
+    run()
