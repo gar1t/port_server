@@ -22,15 +22,20 @@ The gist:
   more service oriented, and use a "fail fast and hard" pattern for error
   handling
 
-Building
-========
+Building the Code
+=================
 
 From the directory containing this README::
 
  $ make
 
-Running
-=======
+Running the Example
+===================
+
+You need Python 2.x installed. The sample Python services assume the Python
+interpreter is named /usr/bin/python2. If this is not the case for your system,
+you can either create a symlink or (preferably) just modify the shebang in the
+two service scripts in priv.
 
 The example can be run from the directory containing this README file::
 
